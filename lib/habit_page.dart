@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:habbie/about_page.dart';
 import 'package:habbie/create_habit.dart';
 import 'package:habbie/detail_page.dart';
 import 'package:habbie/edit_habit.dart';
@@ -38,19 +37,6 @@ class _HabitTrackerPageState extends State<HabitTrackerPage> {
         backgroundColor: HabbieTheme.primary,
         foregroundColor: HabbieTheme.onPrimary,
         title: const Text('Habit Tracker'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.info_outline),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const AboutHabbie(),
-                ),
-              );
-            },
-          ),
-        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
