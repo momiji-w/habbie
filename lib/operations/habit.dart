@@ -79,7 +79,7 @@ Future<bool> deleteHabit(int habitId) async {
   Habit? dbHabit = await isar.habits.get(habitId);
 
   if (dbHabit == null) {
-    print("can't find habit");
+    // print("can't find habit");
     return false;
   }
 

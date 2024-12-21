@@ -17,8 +17,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.dark(
           primary: HabbieTheme.primary,
           onPrimary: HabbieTheme.onPrimary,
-          background: HabbieTheme.background,
-          onBackground: HabbieTheme.onBackground,
           surface: HabbieTheme.background,
           onSurface: HabbieTheme.onBackground,
         ));
