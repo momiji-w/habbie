@@ -15,18 +15,17 @@ class HabitDetail extends StatefulWidget {
 
 class _HabitDetailState extends State<HabitDetail> {
   Map<DateTime, int> habitHeatMap = {};
-
   @override
-  void initState() {
+  void initState() async {
     super.initState();
 
-    getHabitHistorysFromHabit(widget.habitDisplay.habit.id).then((value) {
-      setState(() {
-        for (HabitHistory habitHistory in value) {
-          habitHeatMap[DateTime.parse(habitHistory.date)] =
-              habitHistory.habitId;
-        }
-      });
+    List<HabitHistory> value =
+        await getHabitHistorysFromHabit(widget.habitDisplay.habit.id);
+
+    setState(() {
+      for (HabitHistory habitHistory in value) {
+        habitHeatMap[DateTime.parse(habitHistory.date)] = habitHistory.habitId;
+      }
     });
   }
 
@@ -36,7 +35,7 @@ class _HabitDetailState extends State<HabitDetail> {
       appBar: AppBar(
         backgroundColor: HabbieTheme.primary,
         foregroundColor: HabbieTheme.onPrimary,
-        title: const Text("Detail"),
+        title: Text(widget.habitDisplay.habit.name),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -44,33 +43,12 @@ class _HabitDetailState extends State<HabitDetail> {
           },
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Title: ${widget.habitDisplay.habit.name}',
-              style: const TextStyle(
-                fontSize: 20.0,
-              ),
-            ),
-            const SizedBox(height: 20.0),
-            Text(
-              'Description: ${widget.habitDisplay.habit.description}',
-              style: const TextStyle(
-                fontSize: 20.0,
-              ),
-            ),
-            const SizedBox(height: 20.0),
-            const Text(
-              'History:',
-              style: TextStyle(
-                fontSize: 20.0,
-              ),
-            ),
-            const SizedBox(height: 20.0),
-            HeatMapCalendar(
+      body: Column(
+        children: [
+          const SizedBox(height: 20.0),
+          Container(
+            alignment: Alignment.center,
+            child: HeatMapCalendar(
                 datasets: habitHeatMap,
                 monthFontSize: 17.0,
                 weekTextColor: HabbieTheme.primary,
@@ -79,8 +57,8 @@ class _HabitDetailState extends State<HabitDetail> {
                 showColorTip: false,
                 colorMode: ColorMode.color,
                 colorsets: Map<int, Color>() = {1: HabbieTheme.primary}),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

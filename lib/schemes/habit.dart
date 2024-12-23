@@ -4,7 +4,6 @@ part 'habit.g.dart';
 
 @collection
 class Habit {
-    Id id = Isar.autoIncrement;
-    late String name;
-    late String description;
+  Id id = Isar.autoIncrement;
+  late String name;
 }

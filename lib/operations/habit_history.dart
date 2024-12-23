@@ -101,7 +101,7 @@ Future<bool> deleteHabitHistory(int habitHistoryId) async {
   HabitHistory? dbHabitHistory = await isar.habitHistorys.get(habitHistoryId);
 
   if (dbHabitHistory == null) {
-    print("can't find habitHistory");
+    // print("can't find habitHistory");
     return false;
   }
 

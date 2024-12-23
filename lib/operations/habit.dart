@@ -57,12 +57,10 @@ Future<bool> updateHabit(Habit habit) async {
   Habit? dbHabit = await isar.habits.get(habit.id);
 
   if (dbHabit == null) {
-    print("can't find habit");
     return false;
   }
 
   dbHabit.name = habit.name;
-  dbHabit.description = habit.description;
 
   int habitId = 0;
 
